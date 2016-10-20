@@ -1,8 +1,29 @@
+.main {
+  width: 100%;
+  display: flex;
+}
+
 .rr-top-8 {
   display: flex;
-  width: 20%;
-  margin: 0 auto;
+  width: 18%;
+  margin-left: 41%;
+  margin-right: 41%;
   flex-direction: column;
+  flex-wrap: wrap;
+  transition: margin-left 2s ease, margin-right 2s ease;
+}
+.sf-top-4, .f-top-2, .champion {
+  display: flex;
+  width: 18%;
+  margin-left: 1%;
+  margin-right: 1%;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.quarter {
+  margin-left: 1%;
+  margin-right: 1%;
 }
 
 .title {
@@ -15,84 +36,81 @@
 
 .card {
   width: 100%;
-  border: solid 1px #b3b3b3;
-  border-radius: 10px;
-  margin: 1%;
+  background-color: #909090;
+  color: #F3F3F3;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
 
 .rr-top-8 .card:nth-child(-n+8) {
-  background-color: lightgreen;
+  background-color: #404040;
 }
 
 .avatar-container {
-  width: 96%;
+  width: 98%;
   display: flex;
-  margin: 2%;
-  font-family: 'Press Start 2P';
+  margin-left: 2%;
+  font-family: 'Open Sans';
+}
+
+.avatar-container .data-main {
+  display: flex;
+  flex-wrap: wrap;
+  width: 73%;
+  margin-left: 2%;
+  align-content: center;
 }
 
 .avatar-container .data {
-  width: 73%;
+  width: 75%;
   display: flex;
   flex-wrap: wrap;
-  margin-left: 2%;
 }
 
-figure:after {
+.avatar-container .wins {
+  width: 23%;
+  font-size: 2vw;
+  text-align: right;
+  padding-right: 2%;
+
+}
+
+.avatar-container .separator {
+  border-top: solid 1px;
+  width: 100%;
+}
+
+.attack img {
+  width: 1vw;
+  height: 1vw;
+}
+
+img:after {
   content: "";
   display: block;
-  padding-bottom: 60%;
+  padding-bottom: 25%;
 }
 
-figure {
+img {
   width: 25%;
+  height: 1%;
   margin: 0;
-  border-radius: 50%;
 }
 
-figure .eyes {
+.avatar-container .name, .avatar-container .attack {
   width: 100%;
-  text-align: center;
-  margin-top: 20%;
-}
-
-.eye {
-  background-color: black;
-  width: 10%;
-  border-radius: 50px;
-  margin: 0 2px 2px;
-  display: inline-block;
-  padding-bottom: 20%;
-}
-
-.avatar-container .name {
-  width: 100%;
-  text-align: center;
   font-weight: bold;
   font-size: 1vw;
 }
 
-.data .name:after {
-  padding-bottom: 50%;
-}
-
-.avatar-container .wins, .avatar-container .attack {
-  width: 50%;
-  font-size: 0.5vw;
-}
-
-.avatar-container .wins div, .avatar-container .attack div {
-  display: inline-block;
-}
-
-.avatar-container .wins div:first-child, .avatar-container .attack div:first-child {
-  font-weight: bold;
+.sf-top-4 .data, .f-top-2 .data, .champion .data {
+  align-items: center;
 }
 
 @font-face {
-  font-family: 'Press Start 2P';
+  font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: local('Press Start 2P'), local('PressStart2P-Regular'), url(http://fonts.gstatic.com/s/pressstart2p/v4/8Lg6LX8-ntOHUQnvQ0E7o69WAFmVxfVhVkWhl-QDeAk.woff2) format('woff2');
+  src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3ZBw1xU1rKptJj_0jans920.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }

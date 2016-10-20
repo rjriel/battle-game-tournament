@@ -1,29 +1,68 @@
-<div class="title">
-  {{title}}
+<div class="title" (click)="moveThem()">
+  {{title}} ({{round}})
 </div>
-<div class="rr-top-8">
-  <div class="card" *ngFor="let player of players | playerSort | slice:0:8">
-    <div class="avatar-container">
-        <figure [style.background]="player.background">
-          <div class="eyes">
-            <div class="eye"></div>
-            <div class="eye"></div>
+<div class="main">
+  <div class="rr-top-8">
+    <div class="card" *ngFor="let player of players; let i = index">
+      <div class="avatar-container">
+        <img src="{{player.icon}}"/>
+        <div class="data-main">
+          <div class="data">
+            <div class="name">{{i+1}}. {{player.name}}</div>
+            <div class="attack"><img src="/assets/2694.png" />{{player.attack}}</div>
           </div>
-        </figure>
-        <div class="data">
-          <div class="name">{{player.name}}</div>
-          <div class="wins">
-            <div>Wins</div>
-            <div>{{player.wins}}</div>
-          </div>
-          <div class="attack">
-            <div>Attack</div>
-            <div>{{player.attack}}</div>
-          </div>
+          <div class="wins">{{player.wins}}</div>
+          <div class="separator"></div>
         </div>
+      </div>
     </div>
   </div>
 </div>
+<!--<div class="sf-top-4">-->
+<!--<div class="card" *ngFor="let player of semiFinalists">-->
+<!--<div class="avatar-container">-->
+<!--<figure [style.background]="player.background">-->
+<!--<div class="eyes">-->
+<!--<div class="eye"></div>-->
+<!--<div class="eye"></div>-->
+<!--</div>-->
+<!--</figure>-->
+<!--<div class="data">-->
+<!--{{player.name}}-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="f-top-2">-->
+<!--<div class="card" *ngFor="let player of finalists">-->
+<!--<div class="avatar-container">-->
+<!--<figure [style.background]="player.background">-->
+<!--<div class="eyes">-->
+<!--<div class="eye"></div>-->
+<!--<div class="eye"></div>-->
+<!--</div>-->
+<!--</figure>-->
+<!--<div class="data">-->
+<!--{{player.name}}-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="champion">-->
+<!--<div class="card">-->
+<!--<div class="avatar-container">-->
+<!--<figure [style.background]="champion.background">-->
+<!--<div class="eyes">-->
+<!--<div class="eye"></div>-->
+<!--<div class="eye"></div>-->
+<!--</div>-->
+<!--</figure>-->
+<!--<div class="data">-->
+<!--<div class="name">{{champion.name}}</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 <!-- <div class="rr-runners-up">
   <div class="card" *ngFor="let player of players| slice:8">
     <div class="avatar-container">

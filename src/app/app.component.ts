@@ -2,9 +2,9 @@ import {Component} from '@angular/core'
 import * as io from 'socket.io-client'
 import {Http, Headers} from '@angular/http'
 import {DomSanitizer} from '@angular/platform-browser'
+import * as $ from "jquery"
 
-let colors = ["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Azure","Beige","Bisque","BlanchedAlmond","Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Cornsilk","Crimson","Cyan","DarkBlue","DarkCyan","DarkGoldenRod","DarkGray","DarkGrey","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen","DarkOrange","DarkOrchid","DarkRed","DarkSalmon","DarkSeaGreen","DarkSlateBlue","DarkSlateGray","DarkSlateGrey","DarkTurquoise","DarkViolet","DeepPink","DeepSkyBlue","DimGray","DimGrey","DodgerBlue","FireBrick","FloralWhite","ForestGreen","Fuchsia","Gainsboro","GhostWhite","Gold","GoldenRod","Gray","Grey","Green","GreenYellow","HoneyDew","HotPink","IndianRed","Indigo","Ivory","Khaki","Lavender","LavenderBlush","LawnGreen","LemonChiffon","LightBlue","LightCoral","LightCyan","LightGoldenRodYellow","LightGray","LightGrey","LightGreen","LightPink","LightSalmon","LightSeaGreen","LightSkyBlue","LightSlateGray","LightSlateGrey","LightSteelBlue","LightYellow","Lime","LimeGreen","Linen","Magenta","Maroon","MediumAquaMarine","MediumBlue","MediumOrchid","MediumPurple","MediumSeaGreen","MediumSlateBlue","MediumSpringGreen","MediumTurquoise","MediumVioletRed","MidnightBlue","MintCream","MistyRose","Moccasin","NavajoWhite","Navy","OldLace","Olive","OliveDrab","Orange","OrangeRed","Orchid","PaleGoldenRod","PaleGreen","PaleTurquoise","PaleVioletRed","PapayaWhip","PeachPuff","Peru","Pink","Plum","PowderBlue","Purple","RebeccaPurple","Red","RosyBrown","RoyalBlue","SaddleBrown","Salmon","SandyBrown","SeaGreen","SeaShell","Sienna","Silver","SkyBlue","SlateBlue","SlateGray","SlateGrey","Snow","SpringGreen","SteelBlue","Tan","Teal","Thistle","Tomato","Turquoise","Violet","Wheat","White","WhiteSmoke","Yellow","YellowGreen"]
-let directions = ["bottom", "bottom left", "bottom right", "top", "top left", "top right", "left", "right"]
+let emojis = ["1f40a","1f40b","1f40c","1f40d","1f40e","1f40f","1f41a","1f41b","1f41c","1f41d","1f41e","1f41f","1f42a","1f42b","1f42c","1f42d","1f42e","1f42f","1f43a","1f43b","1f43c"]
 
 @Component({
   selector: 'app-root',
@@ -13,11 +13,31 @@ let directions = ["bottom", "bottom left", "bottom right", "top", "top left", "t
 })
 export class AppComponent {
   title: string = "Qlikémon"
+  round: string = "registering..."
   players: Object[] = []
+  semiFinalists: Object[] = []
+  finalists: Object[] = []
+  champion: Object
   socket: any
   headers: Headers
 
   constructor(private http: Http, private sanitizer: DomSanitizer) {
+    for(let i = 1; i < 5; i++) {
+      this.semiFinalists.push({
+        name: `Semi Finalist ${i}`,
+        background: sanitizer.bypassSecurityTrustStyle("white")
+      })
+    }
+    for(let i = 1; i < 3; i++) {
+      this.finalists.push({
+        name: `Finalist ${i}`,
+        background: sanitizer.bypassSecurityTrustStyle("white")
+      })
+    }
+    this.champion = {
+      name: 'Champion',
+      background: sanitizer.bypassSecurityTrustStyle("white")
+    }
     let id: string = '4a3147ff-e299-401e-8c80-fe2d8247855e';
     let secret: string = 'b3409604-08a6-4854-892d-41bcead8c823';
     let socketArguments = `apiId=${id}&apiSecret=${secret}`;
@@ -44,13 +64,28 @@ export class AppComponent {
         }
       }
     }.bind(this));
+    this.socket.on('new round',(round) => {
+      this.round = round
+    })
     this.socket.on('move played', function (move) {
       if (move.action === "attack" && move.result != "miss") {
         this.players.filter((player) => player._id === move.player)[0].attack += move.value
       }
     }.bind(this));
     this.socket.on('game over', function (game) {
-      this.players.filter((player) => player._id === game.winner)[0].wins += 1
+      switch(this.round) {
+        case "round robin":
+          this.players.filter((player) => player._id === game.winner)[0].wins += 1
+          break;
+        case "quarter finals":
+          let quarterFinalWinner = this.players.filter((player) => player._id === game.winner)[0]
+          this.semiFinalists.shift()
+          break;
+        case "semi finals":
+          break;
+        case "finals":
+          break;
+      }
     }.bind(this));
     this.socket.on('invalid', function (error) {
       console.log("ERROR", error);
@@ -63,17 +98,16 @@ export class AppComponent {
       })
   }
 
+  moveThem() {
+    $(".rr-top-8").toggleClass("quarter");
+  }
+
   addPlayer(player) {
     player.wins = 0
     player.attack = 0
 
-    let look = {
-      direction: directions[Math.floor(Math.random() * directions.length)],
-      firstColor: colors[Math.floor(Math.random() * colors.length)],
-      secondColor: colors[Math.floor(Math.random() * colors.length)],
-      thirdColor: colors[Math.floor(Math.random() * colors.length)]
-    }
-    player.background = this.sanitizer.bypassSecurityTrustStyle(`linear-gradient(to ${look.direction}, ${look.firstColor}, ${look.secondColor}, ${look.thirdColor})`)
+    let icon =  emojis.splice(Math.floor(Math.random() * emojis.length),1)
+    player.icon = `/assets/${icon}.png`
     this.players.push(player)
   }
 
