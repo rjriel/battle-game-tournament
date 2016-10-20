@@ -1,47 +1,53 @@
-.card-container {
+.rr-top-8 {
   display: flex;
-  flex-wrap: wrap;
+  width: 20%;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.title {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+  font-size: 3em;
 }
 
 .card {
-  width: 10%;
+  width: 100%;
   border: solid 1px #b3b3b3;
   border-radius: 10px;
   margin: 1%;
 }
 
-.card:nth-child(-n+8) {
+.rr-top-8 .card:nth-child(-n+8) {
   background-color: lightgreen;
 }
 
 .avatar-container {
-  width: 100%;
+  width: 96%;
   display: flex;
+  margin: 2%;
+  font-family: 'Press Start 2P';
 }
 
-.avatar {
-  width: 100%;
-  margin: 10px;
+.avatar-container .data {
+  width: 73%;
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
+  margin-left: 2%;
 }
 
-.avatar:after {
-  content: "";
-  display: block;
-}
-
-.avatar figure {
-  width: 100%;
-  margin: 0;
-  border-radius: 50%;
-}
-
-.avatar figure:after {
+figure:after {
   content: "";
   display: block;
   padding-bottom: 60%;
+}
+
+figure {
+  width: 25%;
+  margin: 0;
+  border-radius: 50%;
 }
 
 figure .eyes {
@@ -59,36 +65,34 @@ figure .eyes {
   padding-bottom: 20%;
 }
 
-.avatar .name {
+.avatar-container .name {
   width: 100%;
-  margin-bottom: 10px;
   text-align: center;
+  font-weight: bold;
+  font-size: 1vw;
 }
 
-.avatar .wins, .avatar .attack {
+.data .name:after {
+  padding-bottom: 50%;
+}
+
+.avatar-container .wins, .avatar-container .attack {
   width: 50%;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  font-size: 0.5vw;
 }
 
-.avatar .wins div, .avatar .attack div {
-  width: 100%;
-  text-align: center;
+.avatar-container .wins div, .avatar-container .attack div {
+  display: inline-block;
 }
 
-.avatar .wins div:first-child, .avatar .attack div:first-child {
+.avatar-container .wins div:first-child, .avatar-container .attack div:first-child {
   font-weight: bold;
 }
 
-.vs {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 20%;
-}
-
-.avatar .name {
-  font-weight: bold;
-  margin-top: 10px;
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Press Start 2P'), local('PressStart2P-Regular'), url(http://fonts.gstatic.com/s/pressstart2p/v4/8Lg6LX8-ntOHUQnvQ0E7o69WAFmVxfVhVkWhl-QDeAk.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }

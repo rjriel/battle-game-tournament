@@ -12,7 +12,7 @@ let directions = ["bottom", "bottom left", "bottom right", "top", "top left", "t
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string = "Connecting..."
+  title: string = "Qlikémon"
   players: Object[] = []
   socket: any
   headers: Headers
@@ -27,11 +27,7 @@ export class AppComponent {
     this.headers.append("Content-Type", "application/json")
     this.socket = io('http://localhost:3000', {query: socketArguments});
     this.socket.on("success", function (player) {
-      this.title = "Logged In";
-    }.bind(this));
-    this.socket.on('connected', function (data) {
-      console.log('hello there');
-      this.title = "Connected!";
+
     }.bind(this));
     this.socket.on('player connected', function (player) {
       this.getPlayer(player.id)

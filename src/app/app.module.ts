@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { PlayerSortPipe } from './player-sort.pipe';
+import { SlicePipe } from './slice.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlayerSortPipe
+    PlayerSortPipe,
+    SlicePipe
   ],
   imports: [
     BrowserModule,
