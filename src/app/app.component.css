@@ -1,0 +1,94 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 10%;
+  border: solid 1px #b3b3b3;
+  border-radius: 10px;
+  margin: 1%;
+}
+
+.card:nth-child(-n+8) {
+  background-color: lightgreen;
+}
+
+.avatar-container {
+  width: 100%;
+  display: flex;
+}
+
+.avatar {
+  width: 100%;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.avatar:after {
+  content: "";
+  display: block;
+}
+
+.avatar figure {
+  width: 100%;
+  margin: 0;
+  border-radius: 50%;
+}
+
+.avatar figure:after {
+  content: "";
+  display: block;
+  padding-bottom: 60%;
+}
+
+figure .eyes {
+  width: 100%;
+  text-align: center;
+  margin-top: 20%;
+}
+
+.eye {
+  background-color: black;
+  width: 10%;
+  border-radius: 50px;
+  margin: 0 2px 2px;
+  display: inline-block;
+  padding-bottom: 20%;
+}
+
+.avatar .name {
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.avatar .wins, .avatar .attack {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.avatar .wins div, .avatar .attack div {
+  width: 100%;
+  text-align: center;
+}
+
+.avatar .wins div:first-child, .avatar .attack div:first-child {
+  font-weight: bold;
+}
+
+.vs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
+
+.avatar .name {
+  font-weight: bold;
+  margin-top: 10px;
+}

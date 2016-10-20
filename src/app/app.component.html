@@ -1,0 +1,25 @@
+<h4>{{title}}</h4>
+
+<div class="card-container">
+  <div class="card" *ngFor="let player of players | playerSort">
+    <div class="avatar-container">
+      <div class="avatar">
+        <figure [style.background]="player.background">
+          <div class="eyes">
+            <div class="eye"></div>
+            <div class="eye"></div>
+          </div>
+        </figure>
+        <div class="name">{{player.name}}</div>
+        <div class="wins">
+          <div>Wins</div>
+          <div>{{player.wins}}</div>
+        </div>
+        <div class="attack">
+          <div>Attack</div>
+          <div>{{player.attack}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
